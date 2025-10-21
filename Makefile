@@ -9,7 +9,8 @@ INCS_DIR = includes/
 LIBFT_DIR = libft/
 MLX_DIR = minilibx-linux/
 
-SRCS_LIST = mouse_key.c
+SRCS_LIST = mouse_key.c \
+			fractal.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS_LIST:.c=.o))
@@ -17,7 +18,7 @@ OBJS = $(addprefix $(OBJS_DIR), $(SRCS_LIST:.c=.o))
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX_LIB = $(MLX_DIR)/libmlx.a
 
-INCLUDES = -I $(INCS_DIR) -I $(LIBFT_DIR) -I $(MLX_DIR)
+INCLUDES = -I $(INCS_DIR) -I $(LIBFT_DIR)/includes -I $(MLX_DIR)
 LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 GREEN = \033[0;92m
@@ -41,7 +42,15 @@ $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
-	@echo "$(CYAN)A compilar $<... $(DEF_COLOR)\n"
+	@echo -n "$(CYAN)A compilar $<... $(DEF_COLOR)"
+	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
+		echo -n "\b|"; sleep 0.05; \
+		echo -n "\b/"; sleep 0.05; \
+		echo -n "\b-"; sleep 0.05; \
+		echo -n "\b\\"; sleep 0.05; \
+		i=$$(($$i+1)); \
+	done'
+	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):

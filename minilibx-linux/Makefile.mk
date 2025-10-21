@@ -36,7 +36,7 @@ SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put.c mlx_loop.c \
 
 OBJ_DIR = obj
 OBJ	= $(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
-CFLAGS	= -O3 -I$(INC)
+CFLAGS	= -O3 -I$(INC) -Wno-unused-result
 
 GREEN = \033[0;92m
 YELLOW = \033[0;93m
@@ -59,8 +59,7 @@ $(NAME)	: $(OBJ)
 		i=$$(($$i+1)); \
 	done'
 	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
-	@ar -r $(NAME) $(OBJ)
-	@ranlib $(NAME)
+	@ar -rcs $(NAME) $(OBJ)
 	@cp $(NAME) $(NAME_UNAME)
 
 check: all
