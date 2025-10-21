@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:37:18 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/21 10:05:37 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/21 11:03:30 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,19 @@
 # include <stdio.h>
 
 # define KEY_ESC 65307
+# define WIDTH 1920
+# define HEIGHT 1080
 
 typedef struct s_fractal
 {
+	void		*mlx_ptr;
+	void		*win_ptr;
+
 	void		*img_ptr;
 	char		*addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_fractal	img;
 }t_fractal;
 
 int		handle_key_realese(int keycode, t_fractal *fractal);
