@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:37:18 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/21 11:03:30 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/21 15:20:02 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ typedef struct s_fractal
 }t_fractal;
 
 int		handle_key_realese(int keycode, t_fractal *fractal);
-int		close_window(t_fractal *fractal);
+int		close_handle(t_fractal *fractal);
 
 #endif

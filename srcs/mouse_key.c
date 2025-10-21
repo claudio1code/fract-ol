@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 10:01:24 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/21 11:00:32 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/21 15:20:10 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	handle_key_realese(int keycode, t_fractal *fractal)
 	return (0);
 }
 
-int	close_window(t_fractal *fractal)
+int	close_handle(t_fractal *fractal)
 {
 	if (fractal->img_ptr)
 		mlx_destroy_image(fractal->mlx_ptr, fractal->img_ptr);

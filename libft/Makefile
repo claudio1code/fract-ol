@@ -47,7 +47,8 @@ STDIO_FILES = 	ft_putchar_fd.c \
 				ft_putstr_fd.c
 
 STDLIB_FILES = 	ft_atoi.c \
-				ft_itoa.c
+				ft_itoa.c \
+				ft_atof.c
 
 STRING_FILES = 	ft_split.c \
 				ft_strchr.c \
@@ -64,6 +65,8 @@ STRING_FILES = 	ft_split.c \
 				ft_strtrim.c \
 				ft_substr.c
 
+MATH_FILES = ft_signal.c
+
 SRCS = 	$(addprefix $(SRC_DIR)/ctypes/, $(CTYPES_FILES)) \
 		$(addprefix $(SRC_DIR)/gnl/, $(GNL_FILES)) \
 		$(addprefix $(SRC_DIR)/lists/, $(LISTS_FILES)) \
@@ -71,7 +74,8 @@ SRCS = 	$(addprefix $(SRC_DIR)/ctypes/, $(CTYPES_FILES)) \
 		$(addprefix $(SRC_DIR)/printf/, $(PRINTF_FILES)) \
 		$(addprefix $(SRC_DIR)/stdio/, $(STDIO_FILES)) \
 		$(addprefix $(SRC_DIR)/stdlib/, $(STDLIB_FILES)) \
-		$(addprefix $(SRC_DIR)/string/, $(STRING_FILES))
+		$(addprefix $(SRC_DIR)/string/, $(STRING_FILES)) \
+		$(addprefix $(SRC_DIR)/math/, $(MATH_FILES))
 
 OBJS = $(SRCS:.c=.o)
 

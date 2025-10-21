@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 09:48:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/21 11:04:09 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/21 15:19:48 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	main(void)
 	mlx_put_image_to_window(fractal.mlx_ptr, fractal.win_ptr,
 		fractal.img_ptr, 0, 0);
 	mlx_key_hook(fractal.win_ptr, handle_key_realese, &fractal);
-	mlx_hook(fractal.win_ptr, 17, 0, close_window, &fractal);
+	mlx_hook(fractal.win_ptr, 17, 0, close_handle, &fractal);
 	mlx_loop(fractal.mlx_ptr);
 }

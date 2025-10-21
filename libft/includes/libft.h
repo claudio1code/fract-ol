@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 14:24:09 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/09 16:31:16 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:35:27 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	*free_split_null(char **str_array);
 void	free_split(char **str_array);
+double	ft_atof(char *argv);
+int		ft_signal(char *nptr);
 
 typedef struct s_list
 {
