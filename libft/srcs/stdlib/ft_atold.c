@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 09:12:10 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/22 09:47:01 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/22 10:04:45 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static long double	after_dot(char *nptr)
 {
-	int	i;
 	long double	fracttion_power;
 	long double	result;
-	
+	int			i;
+
 	i = 0;
 	result = 0.0L;
 	while (nptr[i] && nptr[i] != '.')
@@ -29,7 +29,7 @@ static long double	after_dot(char *nptr)
 		while (ft_isdigit(nptr[i]))
 		{
 			result += (nptr[i] - '0') * fracttion_power;
-			fracttion_power = 10.0L;
+			fracttion_power /= 10.0L;
 			i++;
 		}
 	}
@@ -39,16 +39,15 @@ static long double	after_dot(char *nptr)
 long double	ft_atold(char *nptr)
 {
 	long double	result;
-	long double	fracttion_power;
-	long double nbr_fracttion;
-	int	signal;
-	int	i;
+	long double	nbr_fracttion;
+	int			signal;
+	int			i;
 
-	if (ft_is_double(nptr[i]) == 0)
-		return(0.0L);
+	if (ft_is_double(nptr) == 0)
+		return (0.0L);
 	result = 0.0L;
 	nbr_fracttion = 0.0L;
-	signal = ft_signal(nptr[i]);
+	signal = ft_signal(nptr);
 	i = 0;
 	while (ft_isspace(nptr[i]))
 		i++;

@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:30:00 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/22 09:50:44 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/22 10:06:19 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static double	after_dot(char *nptr)
 {
-	int	i;
 	double	fracttion_power;
 	double	result;
-	
+	int		i;
+
 	i = 0;
 	result = 0.0;
 	while (nptr[i] && nptr[i] != '.')
@@ -29,7 +29,7 @@ static double	after_dot(char *nptr)
 		while (ft_isdigit(nptr[i]))
 		{
 			result += (nptr[i] - '0') * fracttion_power;
-			fracttion_power = 10.0;
+			fracttion_power /= 10.0;
 			i++;
 		}
 	}
@@ -39,16 +39,15 @@ static double	after_dot(char *nptr)
 double	ft_atof(char *nptr)
 {
 	double	result;
-	double	fracttion_power;
-	double nbr_fracttion;
-	int	signal;
-	int	i;
+	double	nbr_fracttion;
+	int		signal;
+	int		i;
 
-	if (ft_is_double(nptr[i]) == 0)
-		return(0.0);
+	if (ft_is_double(nptr) == 0)
+		return (0.0);
 	result = 0.0;
 	nbr_fracttion = 0.0;
-	signal = ft_signal(nptr[i]);
+	signal = ft_signal(nptr);
 	i = 0;
 	while (ft_isspace(nptr[i]))
 		i++;
