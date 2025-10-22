@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:03:43 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/22 14:17:20 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/22 14:28:41 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	usage_input_and_exit(int flag)
 	}
 }
 
-int	julia_valid(char **argv, t_fractal lst)
+int	julia_valid(char **argv, t_fractal *lst)
 {
 	int	r_arg;
 	int	i_arg;
@@ -40,17 +40,17 @@ int	julia_valid(char **argv, t_fractal lst)
 	if (r_arg == 0 || i_arg == 0)
 		usage_input_and_exit(2);
 	if (r_arg == 1)
-		lst.r_julia = (long double)ft_atoi(argv[2]);
+		lst->r_julia = (long double)ft_atoi(argv[2]);
 	else if (r_arg == 2)
-		lst.r_julia = ft_atold(argv[2]);
+		lst->r_julia = ft_atold(argv[2]);
 	if (i_arg == 1)
-		lst.i_julia = (long double)ft_atoi(argv[3]);
+		lst->i_julia = (long double)ft_atoi(argv[3]);
 	else if (i_arg == 2)
-		lst.i_julia = ft_atold(argv[3]);
+		lst->i_julia = ft_atold(argv[3]);
 	return (2);
 }
 
-int	input_valid(int argc, char **argv, t_fractal lst)
+int	input_valid(int argc, char **argv, t_fractal *lst)
 {
 	if (argc == 1)
 		usage_input_and_exit(1);
@@ -59,10 +59,10 @@ int	input_valid(int argc, char **argv, t_fractal lst)
 		if (argc != 2)
 			usage_input_and_exit(1);
 		else
-			lst.name = ft_strdup("Mandelbrot");
+			lst->name = ft_strdup("Mandelbrot");
 	}
 	if (ft_strncmp(argv[1], "Julia", 6) == 0 && argc == 4)
-		return (julia_valid(argv, lst));
+		return (julia_valid(argv, &lst));
 	else
 		usage_input_and_exit(1);
 	return (0);

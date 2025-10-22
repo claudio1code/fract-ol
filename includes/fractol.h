@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:37:18 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/22 14:21:52 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/22 14:29:02 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_fractal
 int		handle_key_realese(int keycode, t_fractal *fractal);
 int		close_handle(t_fractal *fractal);
 void	usage_input_and_exit(int flag);
-int		julia_valid(char **argv, t_fractal lst);
-int		input_valid(int argc, char **argv, t_fractal lst);
+int		julia_valid(char **argv, t_fractal *lst);
+int		input_valid(int argc, char **argv, t_fractal *lst);
 
 #endif

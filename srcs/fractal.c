@@ -6,16 +6,17 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 09:48:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/22 14:16:16 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/22 14:30:09 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_fractal	fractal;
 
+	input_valid(argc, argv, &fractal);
 	fractal.mlx_ptr = mlx_init();
 	fractal.win_ptr = mlx_new_window(fractal.mlx_ptr, WIDTH, HEIGHT, "fractal");
 	fractal.img_ptr = mlx_new_image(fractal.mlx_ptr, WIDTH, HEIGHT);
