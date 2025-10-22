@@ -6,11 +6,11 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 10:01:24 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/21 15:20:10 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/22 14:16:12 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractal.h"
+#include "fractol.h"
 
 int	handle_key_realese(int keycode, t_fractal *fractal)
 {

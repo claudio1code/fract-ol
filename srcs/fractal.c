@@ -6,11 +6,11 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 09:48:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/21 15:19:48 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/22 14:16:16 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractal.h"
+#include "fractol.h"
 
 int	main(void)
 {
