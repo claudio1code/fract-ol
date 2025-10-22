@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:37:18 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/22 14:29:02 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/22 16:31:22 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,35 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
-typedef struct s_fractal
+typedef struct s_fractol
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void		*mlx_ptr;
+	void		*win_ptr;
 
-	void	*img_ptr;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void		*img_ptr;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
 
-	char	*name;
-	double	r_julia;
-	double	i_julia;
-}t_fractal;
+	char		*name;
+	long double	r_julia;
+	long double	i_julia;
+	long double	real;
+	long double	imaginary;
 
-int		handle_key_realese(int keycode, t_fractal *fractal);
-int		close_handle(t_fractal *fractal);
+	double		x;
+	double		y;
+
+	int			max_inter;
+	long double	pos_x;
+	long double	pos_y;
+}t_fractol;
+
+int		handle_key_realese(int keycode, t_fractol *fractol);
+int		close_handle(t_fractol *fractol);
 void	usage_input_and_exit(int flag);
-int		julia_valid(char **argv, t_fractal *lst);
-int		input_valid(int argc, char **argv, t_fractal *lst);
+int		julia_valid(char **argv, t_fractol *lst);
+int		input_valid(int argc, char **argv, t_fractol *lst);
 
 #endif

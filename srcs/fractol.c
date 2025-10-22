@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractal.c                                          :+:      :+:    :+:   */
+/*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 09:48:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/22 14:30:09 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/22 16:33:05 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 int	main(int argc, char **argv)
 {
-	t_fractal	fractal;
+	t_fractol	fractol;
 
-	input_valid(argc, argv, &fractal);
-	fractal.mlx_ptr = mlx_init();
-	fractal.win_ptr = mlx_new_window(fractal.mlx_ptr, WIDTH, HEIGHT, "fractal");
-	fractal.img_ptr = mlx_new_image(fractal.mlx_ptr, WIDTH, HEIGHT);
-	fractal.addr = mlx_get_data_addr(fractal.img_ptr, &fractal.bits_per_pixel,
-			&fractal.line_length, &fractal.endian);
-	mlx_put_image_to_window(fractal.mlx_ptr, fractal.win_ptr,
-		fractal.img_ptr, 0, 0);
-	mlx_key_hook(fractal.win_ptr, handle_key_realese, &fractal);
-	mlx_hook(fractal.win_ptr, 17, 0, close_handle, &fractal);
-	mlx_loop(fractal.mlx_ptr);
+	input_valid(argc, argv, &fractol);
+	fractol.mlx_ptr = mlx_init();
+	fractol.win_ptr = mlx_new_window(fractol.mlx_ptr, WIDTH, HEIGHT, "fractol");
+	fractol.img_ptr = mlx_new_image(fractol.mlx_ptr, WIDTH, HEIGHT);
+	fractol.addr = mlx_get_data_addr(fractol.img_ptr, &fractol.bits_per_pixel,
+			&fractol.line_length, &fractol.endian);
+	fractol.max_inter = 200;
+	mlx_key_hook(fractol.win_ptr, handle_key_realese, &fractol);
+	mlx_hook(fractol.win_ptr, 17, 0, close_handle, &fractol);
+	mlx_loop(fractol.mlx_ptr);
 }

@@ -1,4 +1,4 @@
-NAME = fractal
+NAME = fractol
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g3
@@ -10,7 +10,7 @@ LIBFT_DIR = libft/
 MLX_DIR = minilibx-linux/
 
 SRCS_LIST = 	mouse_key.c \
-				fractal.c \
+				fractol.c \
 				parsing_input.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))

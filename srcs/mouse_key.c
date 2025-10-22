@@ -6,35 +6,35 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 10:01:24 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/22 14:16:12 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/22 15:11:39 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	handle_key_realese(int keycode, t_fractal *fractal)
+int	handle_key_realese(int keycode, t_fractol *fractol)
 {
 	if (keycode == KEY_ESC)
 	{
-		mlx_destroy_image(fractal->mlx_ptr, fractal->img_ptr);
-		mlx_destroy_window(fractal->mlx_ptr, fractal->win_ptr);
-		mlx_destroy_display(fractal->mlx_ptr);
-		free(fractal->mlx_ptr);
+		mlx_destroy_image(fractol->mlx_ptr, fractol->img_ptr);
+		mlx_destroy_window(fractol->mlx_ptr, fractol->win_ptr);
+		mlx_destroy_display(fractol->mlx_ptr);
+		free(fractol->mlx_ptr);
 		exit (0);
 	}
 	return (0);
 }
 
-int	close_handle(t_fractal *fractal)
+int	close_handle(t_fractol *fractol)
 {
-	if (fractal->img_ptr)
-		mlx_destroy_image(fractal->mlx_ptr, fractal->img_ptr);
-	if (fractal->win_ptr)
-		mlx_destroy_window(fractal->mlx_ptr, fractal->win_ptr);
-	if (fractal->mlx_ptr)
+	if (fractol->img_ptr)
+		mlx_destroy_image(fractol->mlx_ptr, fractol->img_ptr);
+	if (fractol->win_ptr)
+		mlx_destroy_window(fractol->mlx_ptr, fractol->win_ptr);
+	if (fractol->mlx_ptr)
 	{
-		mlx_destroy_display(fractal->mlx_ptr);
-		free(fractal->mlx_ptr);
+		mlx_destroy_display(fractol->mlx_ptr);
+		free(fractol->mlx_ptr);
 	}
 	exit (0);
 	return (0);
