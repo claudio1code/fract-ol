@@ -1,53 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*   ft_atold.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 15:30:00 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/22 09:50:44 by clados-s         ###   ########.fr       */
+/*   Created: 2025/10/22 09:12:10 by clados-s          #+#    #+#             */
+/*   Updated: 2025/10/22 09:47:01 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static double	after_dot(char *nptr)
+static long double	after_dot(char *nptr)
 {
 	int	i;
-	double	fracttion_power;
-	double	result;
+	long double	fracttion_power;
+	long double	result;
 	
 	i = 0;
-	result = 0.0;
+	result = 0.0L;
 	while (nptr[i] && nptr[i] != '.')
 		i++;
 	if (nptr[i] == '.')
 	{
 		i++;
-		fracttion_power = 0.1;
+		fracttion_power = 0.1L;
 		while (ft_isdigit(nptr[i]))
 		{
 			result += (nptr[i] - '0') * fracttion_power;
-			fracttion_power = 10.0;
+			fracttion_power = 10.0L;
 			i++;
 		}
 	}
 	return (result);
 }
 
-double	ft_atof(char *nptr)
+long double	ft_atold(char *nptr)
 {
-	double	result;
-	double	fracttion_power;
-	double nbr_fracttion;
+	long double	result;
+	long double	fracttion_power;
+	long double nbr_fracttion;
 	int	signal;
 	int	i;
 
 	if (ft_is_double(nptr[i]) == 0)
-		return(0.0);
-	result = 0.0;
-	nbr_fracttion = 0.0;
+		return(0.0L);
+	result = 0.0L;
+	nbr_fracttion = 0.0L;
 	signal = ft_signal(nptr[i]);
 	i = 0;
 	while (ft_isspace(nptr[i]))
@@ -56,10 +56,10 @@ double	ft_atof(char *nptr)
 		i++;
 	while (ft_isdigit(nptr[i]))
 	{
-		result = (result * 10.0) + (nptr[i] - '0');
+		result = (result * 10.0L) + (nptr[i] - '0');
 		i++;
 	}
 	if (nptr[i] == '.')
 		nbr_fracttion = after_dot(nptr);
-	return ((result + nbr_fracttion) * (double)signal);
+	return ((result + nbr_fracttion) * (long double)signal);
 }

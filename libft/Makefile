@@ -13,7 +13,8 @@ CTYPES_FILES =	ft_isalnum.c \
 				ft_isdigit.c \
 				ft_isprint.c \
 				ft_tolower.c \
-				ft_toupper.c
+				ft_toupper.c \
+				ft_isspace.c
 
 GNL_FILES = 	get_next_line.c\
 				get_next_line_bonus.c
@@ -48,7 +49,8 @@ STDIO_FILES = 	ft_putchar_fd.c \
 
 STDLIB_FILES = 	ft_atoi.c \
 				ft_itoa.c \
-				ft_atof.c
+				ft_atof.c \
+				ft_atold.c
 
 STRING_FILES = 	ft_split.c \
 				ft_strchr.c \
@@ -65,7 +67,8 @@ STRING_FILES = 	ft_split.c \
 				ft_strtrim.c \
 				ft_substr.c
 
-MATH_FILES = ft_signal.c
+MATH_FILES = 	ft_signal.c \
+				ft_is_double.c
 
 SRCS = 	$(addprefix $(SRC_DIR)/ctypes/, $(CTYPES_FILES)) \
 		$(addprefix $(SRC_DIR)/gnl/, $(GNL_FILES)) \
