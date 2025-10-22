@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing _input.c                                   :+:      :+:    :+:   */
+/*   parsing_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:03:43 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/22 15:16:27 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/22 16:48:46 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,13 @@ int	input_valid(int argc, char **argv, t_fractol *lst)
 		if (argc != 2)
 			usage_input_and_exit(1);
 		else
+		{
 			lst->name = ft_strdup("Mandelbrot");
+			return (1);
+		}
 	}
 	if (ft_strncmp(argv[1], "Julia", 6) == 0 && argc == 4)
-		return (julia_valid(argv, &lst));
+		return (julia_valid(argv, lst));
 	else
 		usage_input_and_exit(1);
 	return (0);
