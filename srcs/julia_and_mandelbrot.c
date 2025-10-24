@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:47:32 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/24 14:23:59 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/24 14:37:17 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,13 @@ void	put_pixel(t_fractol *data, int x, int y)
 	int		i;
 	int		j;
 
+	i = 0;
 	addr = data->addr + (y * data->line_length
 			+ x * (data->bits_per_pixel / 8));
-	i = if_julia(data);
+	if (data->fractol == 2)
+		i = if_julia(data);
+	else if (data->fractol == 1)
+		i = mandelbrot(data);
 	if (i == data->max_inter)
 		color = 0x000000;
 	else
