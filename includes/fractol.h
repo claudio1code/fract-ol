@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:37:18 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/23 17:00:06 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/24 12:09:39 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ typedef struct s_fractol
 	int			max_inter;
 	long double	pos_x;
 	long double	pos_y;
+
+	long double	complex_min_re;
+	long double	complex_max_re;
+	long double	complex_min_im;
+	long double	complex_max_im;
 }t_fractol;
 
 int		handle_key_realese(int keycode, t_fractol *fractol);
@@ -55,5 +60,6 @@ int		julia_valid(char **argv, t_fractol *lst);
 int		input_valid(int argc, char **argv, t_fractol *lst);
 void	put_pixel(t_fractol *data, int x, int y);
 void	put_image(t_fractol *fractol);
+void	map_pixel_to_complex(int px, int py, t_fractol *fractal);
 
 #endif
