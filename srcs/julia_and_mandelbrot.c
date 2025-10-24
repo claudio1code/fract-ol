@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:47:32 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/24 12:08:42 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/24 14:23:59 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,32 @@ int	if_julia(t_fractol *lst)
 		i++;
 	}
 	return (i);
+}
+
+int	mandelbrot(t_fractol*fractol)
+{
+	double	a;
+	double	b;
+	double	a2;
+	double	b2;
+	int		i;
+
+	a = 0.0;
+	b = 0.0;
+	a2 = 0.0;
+	b2 = 0.0;
+	i = 0;
+	while (i < fractol->max_inter)
+	{
+		a2 = a * a;
+		b2 = b * b;
+		if (a2 + b2 > 4.0)
+			return (i);
+		b = 2 * a * b + fractol->imaginary;
+		a = a2 - b2 + fractol->real;
+		i++;
+	}
+	return (fractol->max_inter);
 }
 
 void	put_pixel(t_fractol *data, int x, int y)
@@ -72,6 +98,20 @@ void	my_mlx_pixel_put(t_fractol *img, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+// void	map_pixel_to_complex(int px, int py, t_fractol *fractal)
+// {
+// 	long double	real_range;
+// 	long double	img_range;
+
+// 	real_range = fractal->complex_max_re - fractal->complex_min_re;
+// 	img_range = fractal->complex_max_im - fractal->complex_min_im;
+
+// 	fractal->real = fractal->complex_min_re + ((long double)px / (WIDTH - 1))
+// 		* real_range;
+// 	fractal->imaginary = fractal->complex_max_im - ((long double)py
+// 			/ (HEIGHT - 1)) * img_range;
+// }
+
 void	put_image(t_fractol *fractol)
 {
 	int	x;
@@ -81,10 +121,9 @@ void	put_image(t_fractol *fractol)
 	while (y < HEIGHT)
 	{
 		x = 0;
-		// fractol->imaginary = re_im(fractol, 0, y, 1);
 		while (x < WIDTH)
 		{
-			// fractol->real = re_im(acs, x, y, 0);
+			// map_pixel_to_complex(x, y, fractol);
 			put_pixel(fractol, x, y);
 			x++;
 		}
@@ -92,18 +131,4 @@ void	put_image(t_fractol *fractol)
 	}
 	mlx_put_image_to_window(fractol->mlx_ptr, fractol->win_ptr,
 		fractol->img_ptr, 0, 0);
-}
-
-void	map_pixel_to_complex(int px, int py, t_fractol *fractal)
-{
-	long double	real_range;
-	long double	imag_range;
-
-	real_range = fractal->complex_max_re - fractal->complex_min_re;
-	imag_range = fractal->complex_max_im - fractal->complex_min_im;
-
-	fractal->real = fractal->complex_min_re + ((long double)px / (WIDTH - 1))
-		* real_range;
-	fractal->imaginary = fractal->complex_max_im - ((long double)py
-			/ (HEIGHT - 1)) * imag_range;
 }

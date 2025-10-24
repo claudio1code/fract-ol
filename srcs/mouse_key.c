@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 10:01:24 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/24 13:35:50 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/24 13:47:11 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	close_window(t_fractol *fractol)
 	if (fractol->img_ptr)
 		mlx_destroy_image(fractol->mlx_ptr, fractol->img_ptr);
 	if (fractol->win_ptr)
-		mlx_destroy_win_ptr(fractol->mlx_ptr, fractol->win_ptr);
+		mlx_destroy_window(fractol->mlx_ptr, fractol->win_ptr);
 	if (fractol->mlx_ptr)
 	{
 		mlx_destroy_display(fractol->mlx_ptr);
