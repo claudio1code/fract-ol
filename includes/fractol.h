@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:37:18 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/23 15:14:15 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:00:06 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <math.h>
 
 # define KEY_ESC 65307
 # define WIDTH 1920
@@ -39,6 +40,7 @@ typedef struct s_fractol
 	long double	i_julia;
 	long double	real;
 	long double	imaginary;
+	int			fractol;
 
 
 	int			max_inter;
@@ -51,6 +53,7 @@ int		close_handle(t_fractol *fractol);
 void	usage_input_and_exit(int flag);
 int		julia_valid(char **argv, t_fractol *lst);
 int		input_valid(int argc, char **argv, t_fractol *lst);
-int		put_pixel(t_fractol *data, int x, int y);
+void	put_pixel(t_fractol *data, int x, int y);
+void	put_image(t_fractol *fractol);
 
 #endif
