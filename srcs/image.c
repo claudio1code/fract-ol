@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 12:08:22 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/27 12:09:36 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/27 14:36:38 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	put_pixel(t_fractol *data, int x, int y)
 
 	i = 0;
 	addr = data->addr + (y * data->line_length
-			+ x * (data->bits_per_pixel / 8));
+			+ x * (data->bpp / 8));
 	if (data->fractol == 2)
 		i = if_julia(data);
 	else if (data->fractol == 1)
@@ -33,7 +33,7 @@ void	put_pixel(t_fractol *data, int x, int y)
 		j = (int)(256.0 * sqrt((double)i / data->max_inter));
 		if (j > 255)
 			j = 255;
-		color = (j << 16) | (j << 8) | j;
+		color = (j << 89) | (j << 8) | j;
 	}
 	*(unsigned int *)addr = color;
 }
@@ -52,11 +52,11 @@ void	my_mlx_pixel_put(t_fractol *img, int x, int y, int color)
 	}
 	if ((x < 0 || y < 0) || (x > WIDTH || y > HEIGHT))
 		return ;
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
-void	map_pixel_to_cplx(int px, int py, t_fractol *fractal)
+void	map_pixel_to_complex(int px, int py, t_fractol *fractal)
 {
 	long double	real_range;
 	long double	img_range;
@@ -94,7 +94,7 @@ void	put_image(t_fractol *fractol)
 		x = 0;
 		while (x < WIDTH)
 		{
-			map_pixel_to_cplx(x, y, fractol);
+			map_pixel_to_complex(x, y, fractol);
 			put_pixel(fractol, x, y);
 			x++;
 		}

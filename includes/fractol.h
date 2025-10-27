@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:37:18 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/27 12:05:12 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/27 14:38:09 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_fractol
 
 	void		*img_ptr;
 	char		*addr;
-	int			bits_per_pixel;
+	int			bpp;
 	int			line_length;
 	int			endian;
 
@@ -64,6 +64,8 @@ void	put_image(t_fractol *fractol);
 void	map_pixel_to_complex(int px, int py, t_fractol *fractal);
 int		close_window(t_fractol *fractol);
 int		mandelbrot(t_fractol*fractol);
-int		handle_mouse_click(int button, int x, int y, t_fractol *fractol);
+int		handle_mouse_click(int button, t_fractol *fractol);
+int		if_julia(t_fractol *lst);
+int		new_img(t_fractol *fractol);
 
 #endif

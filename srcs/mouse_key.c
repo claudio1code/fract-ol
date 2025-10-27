@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claudio <claudio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 10:01:24 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/27 06:47:54 by claudio          ###   ########.fr       */
+/*   Updated: 2025/10/27 14:37:48 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	handle_key_realese(int keycode, t_fractol *fractol)
 		mlx_destroy_image(fractol->mlx_ptr, fractol->img_ptr);
 	fractol->img_ptr = mlx_new_image(fractol->mlx_ptr, WIDTH, HEIGHT);
 	fractol->addr = mlx_get_data_addr(fractol->img_ptr,
-			&fractol->bits_per_pixel, &fractol->line_length, &fractol->endian);
+			&fractol->bpp, &fractol->line_length, &fractol->endian);
 	put_image(fractol);
 	return (0);
 }
@@ -70,37 +70,41 @@ int	close_handle(t_fractol *fractol)
 	return (0);
 }
 
-int handle_mouse_click(int button, int x, int y, t_fractol *fractol)
+int	handle_mouse_click(int button, t_fractol *fractol)
 {
-	long double zoom_factor = 1.1; // Ajuste conforme necessário
-    // Mapeia a posição do mouse (onde o zoom deve centrar) para o plano complexo ANTES de aplicar o zoom
-	map_pixel_to_complex(x, y, fractol);
-	long double mouse_re = fractol->real;
-	long double mouse_im = fractol->imaginary;
+	long double	zoom_factor;
+	long double	mouse_re;
+	long double	mouse_im;
 
-	if (button == 4) // Scroll para cima (Zoom In)
+	zoom_factor = 1.1;
+	mouse_re = fractol->real;
+	mouse_im = fractol->imaginary;
+	if (button == 4)
 	{
 	fractol->zoom *= zoom_factor;
-        // Ajusta a posição para manter o ponto sob o mouse no centro do zoom
 	fractol->pos_x = mouse_re + (fractol->pos_x - mouse_re) / zoom_factor;
 	fractol->pos_y = mouse_im + (fractol->pos_y - mouse_im) / zoom_factor;
 	}
-	else if (button == 5) // Scroll para baixo (Zoom Out)
+	else if (button == 5)
 	{
-	fractol->zoom /= zoom_factor;
-         // Ajusta a posição para manter o ponto sob o mouse no centro do zoom
+		fractol->zoom /= zoom_factor;
 		fractol->pos_x = mouse_re + (fractol->pos_x - mouse_re) * zoom_factor;
 		fractol->pos_y = mouse_im + (fractol->pos_y - mouse_im) * zoom_factor;
 	}
 	else
-		return (0); // Ignora outros botões
-    // Recalcula e redesenha a imagem
+		return (0);
+	new_img(fractol);
+}
+
+int	new_img(t_fractol *fractol)
+{
 	if (fractol->img_ptr)
 		mlx_destroy_image(fractol->mlx_ptr, fractol->img_ptr);
 	fractol->img_ptr = mlx_new_image(fractol->mlx_ptr, WIDTH, HEIGHT);
-	if (!fractol->img_ptr) close_window(fractol);
-		fractol->addr = mlx_get_data_addr(fractol->img_ptr, &fractol->bits_per_pixel,
-					&fractol->line_length, &fractol->endian);
+	if (!fractol->img_ptr)
+		close_window(fractol);
+	fractol->addr = mlx_get_data_addr(fractol->img_ptr, &fractol->bpp,
+			&fractol->line_length, &fractol->endian);
 	put_image(fractol);
 	return (0);
 }
