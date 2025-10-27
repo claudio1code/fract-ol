@@ -6,13 +6,13 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:03:43 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/27 12:23:33 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/27 15:59:16 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	usage_input_and_exit(int flag)
+static void	usage_input_and_exit(int flag)
 {
 	if (flag == 1)
 	{
@@ -69,4 +69,18 @@ int	input_valid(int argc, char **argv, t_fractol *lst)
 	else
 		usage_input_and_exit(1);
 	return (0);
+}
+
+int	clean_exit(t_fractol *fractol)
+{
+	if (fractol->img_ptr)
+		mlx_destroy_image(fractol->mlx_ptr, fractol->img_ptr);
+	if (fractol->win_ptr)
+		mlx_destroy_window(fractol->mlx_ptr, fractol->win_ptr);
+	if (fractol->mlx_ptr)
+		mlx_destroy_display(fractol->mlx_ptr);
+	if (fractol->name)
+		free(fractol->name);
+	exit(EXIT_SUCCESS);
+	exit (0);
 }

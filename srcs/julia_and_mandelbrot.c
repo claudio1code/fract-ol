@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:47:32 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/27 12:10:26 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/27 15:39:53 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	if_julia(t_fractol *lst)
 	x = lst->real;
 	y = lst->imaginary;
 	i = 0;
-	while (i < lst->max_inter && ((x * x) + (y * y) <= 4))
+	while (i < lst->max_inter && ((x * x) + (y * y) <= 4.0L))
 	{
 		temp = x * x - y * y + lst->r_julia;
 		y = 2 * x * y + lst->i_julia;
