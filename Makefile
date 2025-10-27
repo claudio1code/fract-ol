@@ -1,6 +1,6 @@
 NAME = fractol
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Werror -Wextra -g3
 
 SRCS_DIR = srcs/
@@ -12,7 +12,8 @@ MLX_DIR = minilibx-linux/
 SRCS_LIST = 	mouse_key.c \
 				fractol.c \
 				parsing_input.c \
-				julia_and_mandelbrot.c
+				julia_and_mandelbrot.c \
+				image.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS_LIST:.c=.o))

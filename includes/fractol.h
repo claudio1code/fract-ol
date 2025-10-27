@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claudio <claudio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:37:18 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/27 06:50:58 by claudio          ###   ########.fr       */
+/*   Updated: 2025/10/27 12:05:12 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ typedef struct s_fractol
 	long double	pos_x;
 	long double	pos_y;
 
-	long double	complex_min_re;
-	long double	complex_max_re;
-	long double	complex_min_im;
-	long double	complex_max_im;
+	long double	cplx_min_re;
+	long double	cplx_max_re;
+	long double	cplx_min_im;
+	long double	cplx_max_im;
 }t_fractol;
 
 int		handle_key_realese(int keycode, t_fractol *fractol);
