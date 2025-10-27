@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claudio <claudio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:37:18 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/24 14:24:06 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/27 06:50:58 by claudio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void	put_image(t_fractol *fractol);
 void	map_pixel_to_complex(int px, int py, t_fractol *fractal);
 int		close_window(t_fractol *fractol);
 int		mandelbrot(t_fractol*fractol);
+int		handle_mouse_click(int button, int x, int y, t_fractol *fractol);
 
 #endif

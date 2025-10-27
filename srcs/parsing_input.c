@@ -25,7 +25,7 @@ void	usage_input_and_exit(int flag)
 	else if (flag == 2)
 	{
 		write (1, "Julia value is invalid. Exemples valids:\n", 41);
-		write(1, "Exemplo para Julia: ./fractol Julia -0.8 0.156\n", 49);
+		write(1, "Exemplo para Julia: ./fractol Julia -0.8 0.156\n", 47);
 		exit(EXIT_FAILURE);
 	}
 }

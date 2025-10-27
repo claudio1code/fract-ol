@@ -1,6 +1,6 @@
 NAME = fractol
 
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Werror -Wextra -g3
 
 SRCS_DIR = srcs/

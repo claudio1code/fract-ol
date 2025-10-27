@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claudio <claudio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 09:48:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/24 14:23:13 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/27 06:26:10 by claudio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ int	main(int argc, char **argv)
 	fractol.max_inter = 200;
 	fractol.pos_x = 0;
 	fractol.pos_y = 0;
+	fractol.zoom = 1.0;
 	fractol.complex_max_im = 2.0;
 	fractol.complex_min_im = -2.0;
 	fractol.complex_max_re = 2.0;
 	fractol.complex_min_re = -2.0;
-	if (fractol.fractol == 1)
-		mandelbrot(&fractol);
 	put_image(&fractol);
 	mlx_key_hook(fractol.win_ptr, handle_key_realese, &fractol);
 	mlx_hook(fractol.win_ptr, 17, 0, close_handle, &fractol);
+	mlx_mouse_hook(fractol.win_ptr, handle_mouse_click, &fractol);
 	mlx_loop(fractol.mlx_ptr);
 	return (0);
 }
