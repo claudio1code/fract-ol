@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 10:01:24 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/27 16:00:15 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/28 11:29:22 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static long double	apply_zoom(int button, t_fractol *fractol)
 	zoom_factor = 1.0;
 	if (button == 4)
 	{
-		zoom_factor = 1.1;
+		zoom_factor = 1.10;
 		fractol->zoom *= zoom_factor;
 	}
 	else if (button == 5)
@@ -68,13 +68,10 @@ static void	update_view(t_fractol *f, long double m_re, long double m_im,
 
 	offset_re = m_re - f->pos_x;
 	offset_im = m_im - f->pos_y;
-	// Calcula o novo centro baseado na posição do mouse e no fator de zoom inverso
 	f->pos_x = m_re - (offset_re / factor);
 	f->pos_y = m_im - (offset_im / factor);
-	// Recalcula os limites baseados no novo centro e zoom
-	// Assumindo que o range base é 4.0 (-2 a +2)
 	range_re = 4.0 / f->zoom;
-	range_im = 4.0 / f->zoom; // Manter proporção
+	range_im = 4.0 / f->zoom;
 	f->cplx_min_re = f->pos_x - range_re / 2.0;
 	f->cplx_max_re = f->pos_x + range_re / 2.0;
 	f->cplx_min_im = f->pos_y - range_im / 2.0;
