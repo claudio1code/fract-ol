@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:03:43 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/27 15:59:16 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:44:36 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static void	usage_input_and_exit(int flag)
 	{
 		write(1, "Uso incorreto.\n", 15);
 		write(1, "Opções disponíveis:\n", 20);
-		write(1, "  ./fractol Mandelbrot\n", 24);
-		write(1, "  ./fractol Julia <c_real> <c_imag>\n", 37);
+		write(1, "  ./fractol mandelbrot\n", 24);
+		write(1, "  ./fractol julia <c_real> <c_imag>\n", 37);
 		exit(EXIT_FAILURE);
 	}
 	else if (flag == 2)
 	{
 		write (1, "Julia value is invalid. Exemples valids:\n", 41);
-		write(1, "Exemplo para Julia: ./fractol Julia -0.8 0.156\n", 47);
+		write(1, "Exemplo para Julia: ./fractol julia -0.8 0.156\n", 47);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -54,17 +54,22 @@ int	input_valid(int argc, char **argv, t_fractol *lst)
 {
 	if (argc == 1)
 		usage_input_and_exit(1);
-	if (ft_strncmp(argv[1], "Mandelbrot", 11) == 0)
+	if (argv[1][0] == '-' || argv[1][0] == '+' || argv[2][0] == '-'
+			|| argv[2][0] == '+')
+		if (argv[1][1] == '-' || argv[1][1] == '+' || argv[2][1] == '-'
+				|| argv[2][1] == '+')
+			usage_input_and_exit(1);
+	if (ft_strncmp(argv[1], "mandelbrot", 11) == 0)
 	{
 		if (argc != 2)
 			usage_input_and_exit(1);
 		else
 		{
-			lst->name = ft_strdup("Mandelbrot");
+			lst->name = ft_strdup("mandelbro");
 			return (1);
 		}
 	}
-	if (ft_strncmp(argv[1], "Julia", 6) == 0 && argc == 4)
+	if (ft_strncmp(argv[1], "julia", 6) == 0 && argc == 4)
 		return (julia_valid(argv, lst));
 	else
 		usage_input_and_exit(1);

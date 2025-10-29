@@ -29,31 +29,17 @@ YELLOW = \033[0;93m
 CYAN = \033[0;96m
 DEF_COLOR = \033[0;39m
 
+MAKEFLAGS += -j
+
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
 	@echo -n "$(YELLOW)A linkar $(NAME)... $(DEF_COLOR)"
-	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
-		echo -n "\b|"; sleep 0.05; \
-		echo -n "\b/"; sleep 0.05; \
-		echo -n "\b-"; sleep 0.05; \
-		echo -n "\b\\"; sleep 0.05; \
-		i=$$(($$i+1)); \
-	done'
 	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
-	@echo -n "$(CYAN)A compilar $<... $(DEF_COLOR)"
-	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
-		echo -n "\b|"; sleep 0.05; \
-		echo -n "\b/"; sleep 0.05; \
-		echo -n "\b-"; sleep 0.05; \
-		echo -n "\b\\"; sleep 0.05; \
-		i=$$(($$i+1)); \
-	done'
-	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):

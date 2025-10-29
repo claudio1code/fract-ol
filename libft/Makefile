@@ -87,20 +87,14 @@ YELLOW = \033[0;93m
 CYAN = \033[0;96m
 DEF_COLOR = \033[0;39m
 
+MAKEFLAGS += -j
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo -n "$(YELLOW)A linkar $(NAME)... $(DEF_COLOR)"
-	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
-		echo -n "\b|"; sleep 0.05; \
-		echo -n "\b/"; sleep 0.05; \
-		echo -n "\b-"; sleep 0.05; \
-		echo -n "\b\\"; sleep 0.05; \
-		i=$$(($$i+1)); \
-	done'
 	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
 	@ar rcs $(NAME) $(OBJS)
-	@echo "$(GREEN)$(NAME) criado com sucesso!$(DEF_COLOR)\n"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:37:18 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/27 16:16:25 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/29 15:56:41 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define KEY_ESC 65307
 # define WIDTH 800
 # define HEIGHT 600
+# define _USE_MATH_DEFINES
 
 typedef struct s_fractol
 {
@@ -52,6 +53,10 @@ typedef struct s_fractol
 	long double	cplx_max_re;
 	long double	cplx_min_im;
 	long double	cplx_max_im;
+
+	int			r;
+	int			g;
+	int			b;
 }t_fractol;
 
 int		handle_key_realese(int keycode, t_fractol *fractol);

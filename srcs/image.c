@@ -6,17 +6,32 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 12:08:22 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/27 16:38:56 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:41:40 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+static int	get_color_from_palette(int i, t_fractol *data)
+{
+	double	normalizes;
+	double	pi;
+	int		color;
+
+	pi = 3.141592653589793;
+	normalizes = (double)i / (double)data->max_inter;
+	normalizes = sqrt(normalizes);
+	data->r = (int)(127.5 * sin(normalizes * 2 * pi * 0.15 + 0) + 127.5);
+	data->g = (int)(127.5 * sin(normalizes * 2 * pi * 0.20 + 2) + 127.5);
+	data->b = (int)(127.5 * sin(normalizes * 2 * pi * 0.25 + 4) + 127.5);
+	color = (data->r) << 16 | (data->g) << 8 | (data->b);
+	return (color);
+}
+
 static void	put_pixel(t_fractol *data, int x, int y)
 {
 	char	*addr;
 	int		color;
-	int		depth_color;
 	int		i;
 
 	i = 0;
@@ -31,13 +46,7 @@ static void	put_pixel(t_fractol *data, int x, int y)
 	if (i == data->max_inter)
 		color = 0x000000;
 	else
-	{
-		depth_color = (i * 255) / data->max_inter;
-		if (depth_color > 255)
-			depth_color = 255;
-		color = (depth_color / 2 << 16) | (depth_color << 8) | depth_color;
-		// color = (i * 16) << 16 | (i * 7) << 8 | (i * 22);
-	}
+		color = get_color_from_palette(i, data);
 	*(unsigned int *)addr = color;
 }
 

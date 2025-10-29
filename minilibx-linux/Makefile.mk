@@ -50,7 +50,7 @@ $(OBJ_DIR)/%.o: %.c
 	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 $(NAME)	: $(OBJ)
-	@echo -n "$(YELLOW)A linkar $(NAME)... $(DEF_COLOR)"
+	@echo -n "\n$(YELLOW)A linkar $(NAME)... $(DEF_COLOR)"
 	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
 		echo -n "\b|"; sleep 0.05; \
 		echo -n "\b/"; sleep 0.05; \
