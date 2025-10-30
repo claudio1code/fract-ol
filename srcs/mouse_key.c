@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 10:01:24 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/30 14:13:15 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/30 14:24:48 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ static void	update_view(t_fractol *f, long double m_re, long double m_im,
 	f->cplx_max_re = f->pos_x + range_re / 2.0;
 	f->cplx_min_im = f->pos_y - range_im / 2.0;
 	f->cplx_max_im = f->pos_y + range_im / 2.0;
-	f->pos_x += offset_re - range_re;
-	f->pos_y += offset_im - range_im;
 }
 
 static int	new_img(t_fractol *fractol)

@@ -55,7 +55,7 @@ $(NAME)	: $(OBJ)
 		echo -n "\b|"; sleep 0.05; \
 		echo -n "\b/"; sleep 0.05; \
 		echo -n "\b-"; sleep 0.05; \
-		echo -n "\b\\"; sleep 0.05; \
+				echo -n "\b\\"; sleep 0.05; \
 		i=$$(($$i+1)); \
 	done'
 	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
