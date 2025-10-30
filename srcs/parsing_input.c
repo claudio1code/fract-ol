@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:03:43 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/29 16:44:36 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/30 09:00:27 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,18 @@ int	input_valid(int argc, char **argv, t_fractol *lst)
 {
 	if (argc == 1)
 		usage_input_and_exit(1);
-	if (argv[1][0] == '-' || argv[1][0] == '+' || argv[2][0] == '-'
-			|| argv[2][0] == '+')
-		if (argv[1][1] == '-' || argv[1][1] == '+' || argv[2][1] == '-'
-				|| argv[2][1] == '+')
-			usage_input_and_exit(1);
+	// if (argv[1][0] == '-' || argv[1][0] == '+' || argv[2][0] == '-'
+	// 		|| argv[2][0] == '+')
+	// 	if (argv[1][1] == '-' || argv[1][1] == '+' || argv[2][1] == '-'
+	// 			|| argv[2][1] == '+')
+			// usage_input_and_exit(1);
 	if (ft_strncmp(argv[1], "mandelbrot", 11) == 0)
 	{
 		if (argc != 2)
 			usage_input_and_exit(1);
 		else
 		{
-			lst->name = ft_strdup("mandelbro");
+			lst->name = ft_strdup("mandelbrot");
 			return (1);
 		}
 	}
