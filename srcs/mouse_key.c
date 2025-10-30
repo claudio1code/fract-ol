@@ -6,13 +6,25 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 10:01:24 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/30 14:24:48 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/30 16:32:28 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	handle_key_realese(int keycode, t_fractol *fractol)
+static void	redraw_image(t_fractol *fractol)
+{
+	if (fractol->img_ptr)
+		mlx_destroy_image(fractol->mlx_ptr, fractol->img_ptr);
+	fractol->img_ptr = mlx_new_image(fractol->mlx_ptr, WIDTH, HEIGHT);
+	if (!fractol->img_ptr)
+		clean_exit(fractol);
+	fractol->addr = mlx_get_data_addr(fractol->img_ptr,
+			&fractol->bpp, &fractol->line_length, &fractol->endian);
+	put_image(fractol);
+}
+
+int	handle_key_relese(int keycode, t_fractol *fractol)
 {
 	double		move_speed;
 
@@ -29,14 +41,13 @@ int	handle_key_realese(int keycode, t_fractol *fractol)
 		fractol->pos_y += move_speed;
 	else if (keycode == 65364)
 		fractol->pos_y -= move_speed;
+	else if (keycode == 65451)
+		fractol->color_freq *= 1.10;
+	else if (keycode == 65453)
+		fractol->color_freq *= 0.90;
 	else
 		return (0);
-	if (fractol->img_ptr)
-		mlx_destroy_image(fractol->mlx_ptr, fractol->img_ptr);
-	fractol->img_ptr = mlx_new_image(fractol->mlx_ptr, WIDTH, HEIGHT);
-	fractol->addr = mlx_get_data_addr(fractol->img_ptr,
-			&fractol->bpp, &fractol->line_length, &fractol->endian);
-	put_image(fractol);
+	redraw_image(fractol);
 	return (0);
 }
 

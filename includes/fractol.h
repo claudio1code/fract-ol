@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:37:18 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/30 13:36:40 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/30 16:32:37 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@ typedef struct s_fractol
 	long double	cplx_min_im;
 	long double	cplx_max_im;
 
+	long double	color_freq;
 	int			r;
 	int			g;
 	int			b;
 }t_fractol;
 
-int			handle_key_realese(int keycode, t_fractol *fractol);
+int			handle_key_relese(int keycode, t_fractol *fractol);
 int			julia_valid(char **argv, t_fractol *lst);
 int			input_valid(int argc, char **argv, t_fractol *lst);
 void		put_image(t_fractol *fractol);

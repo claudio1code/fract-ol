@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 12:08:22 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/30 15:47:26 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/30 16:07:18 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	get_color_from_palette(long double i, t_fractol *data)
 
 	pi = 3.141592653589793;
 	normalizes = (double)i / (double)data->max_inter;
-	freq = normalizes * 2 * pi * 15.0;
+	freq = normalizes * 2 * pi * data->color_freq;
 	data->r = (int)(127.5 * sin(freq + 0.0) + 127.5);
 	data->g = (int)(127.5 * sin(freq + (2 * pi / 3.0)) + 127.5);
 	data->b = (int)(127.5 * sin(freq + (4 * pi / 3.0)) + 127.5);
