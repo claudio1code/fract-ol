@@ -6,36 +6,41 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 12:08:22 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/30 10:32:49 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/30 14:16:19 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int	get_color_from_palette(int i, t_fractol *data)
+static int	get_color_from_palette(long double i, t_fractol *data)
 {
 	double	normalizes;
 	double	pi;
 	int		color;
+	double	freq;
 
 	pi = 3.141592653589793;
 	normalizes = (double)i / (double)data->max_inter;
-	normalizes = sqrt(normalizes);
+	freq = normalizes * 2 * pi * 15.0;
+	// normalizes = sqrt(normalizes);
 	// data->r = (int)(127.5 * sin(normalizes * 2 * pi * 0.50 + 1.4) + 127.5);
 	// data->g = (int)(127.5 * sin(normalizes * 2 * pi * 0.10 + -0.8) + 127.5);
 	// data->b = (int)(127.5 * sin(normalizes * 2 * pi * 0.45 + -0.5) + 127.5);
-	data->r = (int)(127.5 * sin(normalizes * 2 * pi * 0.65 + 2.9) + 127.5);
-	data->g = (int)(127.5 * sin(normalizes * 2 * pi * 0.10 + 3.0) + 127.5);
-	data->b = (int)(127.5 * sin(normalizes * 2 * pi * 0.45 + 1.5) + 127.5);
+	data->r = (int)(127.5 * sin(freq + 0.0) + 127.5);
+	data->g = (int)(127.5 * sin(freq + (2 * pi / 3.0)) + 127.5);
+	data->b = (int)(127.5 * sin(freq + (4 * pi / 3.0)) + 127.5);
+	// data->r = (int)(127.5 * sin(normalizes * 2 * pi * 1.5 + 4.0) + 127.5);
+	// data->g = (int)(127.5 * sin(normalizes * 2 * pi * 0.5 + 3.0) + 127.5);
+	// data->b = (int)(127.5 * sin(normalizes * 2 * pi * 3.0 + 1.0) + 127.5);
 	color = (data->r) << 16 | (data->g) << 8 | (data->b);
 	return (color);
 }
 
 static void	put_pixel(t_fractol *data, int x, int y)
 {
-	char	*addr;
-	int		color;
-	int		i;
+	char		*addr;
+	int			color;
+	long double	i;
 
 	i = 0;
 	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
@@ -46,7 +51,7 @@ static void	put_pixel(t_fractol *data, int x, int y)
 		i = if_julia(data);
 	else if (data->fractol == 1)
 		i = mandelbrot(data);
-	if (i == data->max_inter)
+	if (i >= data->max_inter)
 		color = 0x000000;
 	else
 		color = get_color_from_palette(i, data);

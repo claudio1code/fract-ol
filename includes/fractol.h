@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:37:18 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/29 15:56:41 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/30 13:36:40 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ typedef struct s_fractol
 	int			b;
 }t_fractol;
 
-int		handle_key_realese(int keycode, t_fractol *fractol);
-int		julia_valid(char **argv, t_fractol *lst);
-int		input_valid(int argc, char **argv, t_fractol *lst);
-void	put_image(t_fractol *fractol);
-int		mandelbrot(t_fractol*fractol);
-int		handle_mouse_click(int button, int x, int y, t_fractol *fractol);
-void	map_pixel_to_complex(int px, int py, t_fractol *fractal);
-int		if_julia(t_fractol *lst);
-int		clean_exit(t_fractol *fractol);
+int			handle_key_realese(int keycode, t_fractol *fractol);
+int			julia_valid(char **argv, t_fractol *lst);
+int			input_valid(int argc, char **argv, t_fractol *lst);
+void		put_image(t_fractol *fractol);
+long double	mandelbrot(t_fractol*fractol);
+int			handle_mouse_click(int button, int x, int y, t_fractol *fractol);
+void		map_pixel_to_complex(int px, int py, t_fractol *fractal);
+long double	if_julia(t_fractol *lst);
+int			clean_exit(t_fractol *fractol);
 
 #endif
