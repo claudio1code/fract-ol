@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:03:43 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/30 09:00:27 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:52:54 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void	usage_input_and_exit(int flag)
 	{
 		write (1, "Julia value is invalid. Exemples valids:\n", 41);
 		write(1, "Exemplo para Julia: ./fractol julia -0.8 0.156\n", 47);
+		write(1, "Exemplo para Julia: ./fractol julia 0.355 0.1\n", 47);
+		write(1, "Exemplo para Julia: ./fractol julia -0.7269 0.1889\n", 52);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -54,11 +56,6 @@ int	input_valid(int argc, char **argv, t_fractol *lst)
 {
 	if (argc == 1)
 		usage_input_and_exit(1);
-	// if (argv[1][0] == '-' || argv[1][0] == '+' || argv[2][0] == '-'
-	// 		|| argv[2][0] == '+')
-	// 	if (argv[1][1] == '-' || argv[1][1] == '+' || argv[2][1] == '-'
-	// 			|| argv[2][1] == '+')
-			// usage_input_and_exit(1);
 	if (ft_strncmp(argv[1], "mandelbrot", 11) == 0)
 	{
 		if (argc != 2)
@@ -83,9 +80,11 @@ int	clean_exit(t_fractol *fractol)
 	if (fractol->win_ptr)
 		mlx_destroy_window(fractol->mlx_ptr, fractol->win_ptr);
 	if (fractol->mlx_ptr)
+	{
 		mlx_destroy_display(fractol->mlx_ptr);
+		free(fractol->mlx_ptr);
+	}
 	if (fractol->name)
 		free(fractol->name);
 	exit(EXIT_SUCCESS);
-	exit (0);
 }

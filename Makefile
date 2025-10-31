@@ -13,7 +13,8 @@ SRCS_LIST = 	mouse_key.c \
 				fractol.c \
 				parsing_input.c \
 				julia_and_mandelbrot.c \
-				image.c
+				image.c \
+				utils.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS_LIST:.c=.o))
