@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 09:46:15 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 12:17:18 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 16:42:42 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,8 @@ int	julia_valid(char **argv, t_fractol *lst)
 	return (2);
 }
 
-int	input_valid(int argc, char **argv, t_fractol *lst)
+static int	fract_imput(int argc, char **argv, t_fractol *lst)
 {
-	if (argc == 1)
-		usage_input_and_exit(1);
 	if (ft_strncmp(argv[1], "mandelbrot", 11) == 0)
 	{
 		if (argc != 2)
@@ -82,4 +80,11 @@ int	input_valid(int argc, char **argv, t_fractol *lst)
 	else
 		usage_input_and_exit(1);
 	return (0);
+}
+
+int	input_valid(int argc, char **argv, t_fractol *lst)
+{
+	if (argc == 1)
+		usage_input_and_exit(1);
+	fract_imput(argc, argv, lst);
 }
