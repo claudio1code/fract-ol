@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 17:15:06 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 12:01:06 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 15:29:47 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ static void	update_complex(t_fractol *fractol)
 	fractol->cplx_max_im = fractol->pos_y + range_im / 2.0;
 }
 
-int	handle_mouse(int button, t_fractol *fractol)
+int	handle_mouse(int button, int x, int y, t_fractol *fractol)
 {
+	(void)x;
+	(void)y;
 	if (button == 4)
 		fractol->zoom *= 1.10;
 	else if (button == 5)

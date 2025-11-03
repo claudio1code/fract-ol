@@ -4,12 +4,13 @@ NAME_BONUS = fractol_bonus
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -O3
 
-SRCS_DIR_MANDATORY = srcs_bonus/
-SRCS_DIR_BONUS = srcs/
+SRCS_DIR_MANDATORY = srcs_mandatory/
+SRCS_DIR_BONUS = srcs_bonus/
 OBJS_DIR = objs/
 INCS_DIR = includes/
 LIBFT_DIR = libft/
 MLX_DIR = minilibx-linux/
+
 
 SRCS_LIST = 	fractol.c \
 				julia_and_mandelbrot.c \
@@ -57,19 +58,6 @@ $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
 
 bonus: $(NAME_BONUS)
 
-$(NAME_BONUS): $(OBJS_BONUS) $(LIBFT) $(MLX_LIB)
-	@echo -n "$(YELLOW)A linkar $(NAME_BONUS)... $(DEF_COLOR)"
-	@sh -c 'i=0; \
-	while [ $$i -lt 10 ]; do \
-		echo -n "\b|"; sleep 0.05; \
-		echo -n "\b/"; sleep 0.05; \
-		echo -n "\b-"; sleep 0.05; \
-		echo -n "\b\\"; sleep 0.05; \
-		i=$$(($$i+1)); \
-	done'
-	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
-	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LDFLAGS) -o $(NAME_BONUS)
-
 $(OBJS_DIR)%.o: $(SRCS_DIR_MANDATORY)%.c
 	@mkdir -p $(OBJS_DIR)
 	@echo -n "$(CYAN)A compilar $<... $(DEF_COLOR)"
@@ -82,6 +70,32 @@ $(OBJS_DIR)%.o: $(SRCS_DIR_MANDATORY)%.c
 	done'
 	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+	$(OBJS_DIR)%.o: $(SRCS_DIR_BONUS)%.c
+	@mkdir -p $(OBJS_DIR)
+	@echo -n "$(CYAN)A compilar $<... $(DEF_COLOR)"
+	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
+		echo -n "\b|"; sleep 0.05; \
+		echo -n "\b/"; sleep 0.05; \
+		echo -n "\b-"; sleep 0.05; \
+		echo -n "\b\\"; sleep 0.05; \
+		i=$$(($$i+1)); \
+	done'
+	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(NAME_BONUS): $(OBJS_BONUS) $(LIBFT) $(MLX_LIB)
+	@echo -n "$(YELLOW)A linkar $(NAME_BONUS)... $(DEF_COLOR)"
+	@sh -c 'i=0; \
+	while [ $$i -lt 10 ]; do \
+		echo -n "\b|"; sleep 0.05; \
+		echo -n "\b/"; sleep 0.05; \
+		echo -n "\b-"; sleep 0.05; \
+		echo -n "\b\\"; sleep 0.05; \
+		i=$$(($$i+1)); \
+	done'
+	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
+	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LDFLAGS) -o $(NAME_BONUS)
 
 $(LIBFT):
 	@make -sC $(LIBFT_DIR)
@@ -99,4 +113,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

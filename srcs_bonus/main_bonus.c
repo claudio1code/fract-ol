@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_bonus.c                                    :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 09:29:49 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 10:54:18 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 15:23:58 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	init_fractol(t_fractol *f)
 	f->cplx_min_re = -2.0;
 	f->color_freq = 15.0;
 }
-
 
 static void	register_hooks(t_fractol *fractol)
 {
