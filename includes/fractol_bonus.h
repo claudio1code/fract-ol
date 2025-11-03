@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 17:04:15 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 09:41:31 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 09:55:32 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_fractol
 	long double	imaginary;
 	int			fractol;
 
-	int			max_inter;
+	int			max_iter;
 	long double	zoom;
 	long double	pos_x;
 	long double	pos_y;

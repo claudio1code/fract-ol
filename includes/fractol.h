@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:37:18 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 09:41:08 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 09:55:26 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_fractol
 	long double	imaginary;
 	int			fractol;
 
-	int			max_inter;
+	int			max_iter;
 	long double	zoom;
 	long double	pos_x;
 	long double	pos_y;
@@ -61,7 +61,7 @@ typedef struct s_fractol
 }t_fractol;
 
 int			handle_key(int keycode, t_fractol *fractol);
-int			fractol_valid(char **argv, t_fractol *lst);
+int			julia_valid(char **argv, t_fractol *lst);
 int			input_valid(int argc, char **argv, t_fractol *lst);
 long double	mandelbrot(t_fractol*fractol);
 long double	if_julia(t_fractol *lst);

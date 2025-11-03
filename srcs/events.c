@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 17:15:06 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/31 17:20:05 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:08:13 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	handle_mouse(int button, t_fractol *fractol)
 		fractol->zoom *= 0.90;
 	else
 		return (0);
-	update_complex_range(fractol);
+	update_complex(fractol);
 	put_image(fractol);
 	return (0);
 }

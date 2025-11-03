@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia_and_mandelbrot.c                             :+:      :+:    :+:   */
+/*   fractols_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 16:47:32 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 09:54:22 by clados-s         ###   ########.fr       */
+/*   Created: 2025/11/03 09:53:07 by clados-s          #+#    #+#             */
+/*   Updated: 2025/11/03 10:16:58 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 long double	if_julia(t_fractol *lst)
 {
@@ -59,4 +59,32 @@ long double	mandelbrot(t_fractol*fractol)
 		i++;
 	}
 	return ((long double)fractol->max_iter);
+}
+
+long double	newton_fractal(t_fractol *fractol)
+{
+	long double	z[2];
+	long double	p[2];
+	long double	dp[2];
+	long double	temp[2];
+	int			iter;
+
+	z[0] = fractol->real;
+	z[1] = fractol->imaginary;
+	iter = -1;
+	while (++iter < 40)
+	{
+		p[0] = (z[0] * z[0] * z[0]) - (3.0L * z[0] * z[1] * z[1]) - 1.0L;
+		p[1] = (3.0L * z[0] * z[0] * z[1]) - (z[1] * z[1] * z[1]);
+		dp[0] = 3.0L * (z[0] * z[0] - z[1] * z[1]);
+		dp[1] = 6.0L * z[0] * z[1];
+		temp[0] = dp[0] * dp[0] + dp[1] * dp[1];
+		if (temp[0] < 1e-9)
+			break ;
+		temp[1] = (p[0] * dp[0] + p[1] * dp[1]) / temp[0];
+		dp[1] = (p[1] * dp[0] - p[0] * dp[1]) / temp[0];
+		z[0] = z[0] - temp[1];
+		z[1] = z[1] - dp[1];
+	}
+	return (atan2(z[1], z[0]));
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 11:03:43 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 09:51:04 by clados-s         ###   ########.fr       */
+/*   Created: 2025/11/03 09:46:15 by clados-s          #+#    #+#             */
+/*   Updated: 2025/11/03 10:24:13 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 static void	usage_input_and_exit(int flag)
 {
@@ -20,6 +20,7 @@ static void	usage_input_and_exit(int flag)
 		write(1, "Opções disponíveis:\n", 20);
 		write(1, "  ./fractol mandelbrot\n", 24);
 		write(1, "  ./fractol julia <c_real> <c_imag>\n", 37);
+		write(1, "  ./fractol newton\n", 19);
 	}
 	else if (flag == 2)
 	{
@@ -31,7 +32,7 @@ static void	usage_input_and_exit(int flag)
 	exit(EXIT_FAILURE);
 }
 
-int	julia_valid(char **argv, t_fractol *lst)
+static int	julia_valid(char **argv, t_fractol *lst)
 {
 	int	r_arg;
 	int	i_arg;
@@ -63,6 +64,16 @@ int	input_valid(int argc, char **argv, t_fractol *lst)
 		{
 			lst->name = ft_strdup("mandelbrot");
 			return (1);
+		}
+	}
+	if (ft_strncmp(argv[1], "newton", 7) == 0)
+	{
+		if (argc != 2)
+			usage_input_and_exit(1);
+		else
+		{
+			lst->name = ft_strdup("newton");
+			return (3);
 		}
 	}
 	if (ft_strncmp(argv[1], "julia", 6) == 0 && argc == 4)

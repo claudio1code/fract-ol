@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 09:48:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 09:43:53 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:01:17 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	init_fractol(t_fractol *f)
 	f->img_ptr = mlx_new_image(f->mlx_ptr, WIDTH, HEIGHT);
 	f->addr = mlx_get_data_addr(f->img_ptr, &f->bpp, &f->line_length,
 			&f->endian);
-	f->max_inter = 142;
+	f->max_iter = 142;
 	f->pos_x = 0;
 	f->pos_y = 0;
 	f->zoom = 1.0;

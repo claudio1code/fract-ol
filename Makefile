@@ -9,12 +9,18 @@ INCS_DIR = includes/
 LIBFT_DIR = libft/
 MLX_DIR = minilibx-linux/
 
-SRCS_LIST = 	mouse_key.c \
-				fractol.c \
-				parsing_input.c \
+SRCS_LIST = 	fractol.c \
 				julia_and_mandelbrot.c \
+				parsing.c \
 				image.c \
-				utils.c
+				events.c
+
+SRCS_BONUS_LIST = 	main_bonus.c \
+					fractols_bonus.c \
+					parsing_bonus.c \
+					image_bonus.c \
+					mouse_bonus.c \
+					events_bonus.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS_LIST:.c=.o))
