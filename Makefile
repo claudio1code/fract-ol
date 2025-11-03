@@ -11,6 +11,7 @@ INCS_DIR = includes/
 LIBFT_DIR = libft/
 MLX_DIR = minilibx-linux/
 
+VPATH = $(SRCS_DIR_MANDATORY) $(SRCS_DIR_BONUS)
 
 SRCS_LIST = 	fractol.c \
 				julia_and_mandelbrot.c \
@@ -58,20 +59,7 @@ $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
 
 bonus: $(NAME_BONUS)
 
-$(OBJS_DIR)%.o: $(SRCS_DIR_MANDATORY)%.c
-	@mkdir -p $(OBJS_DIR)
-	@echo -n "$(CYAN)A compilar $<... $(DEF_COLOR)"
-	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
-		echo -n "\b|"; sleep 0.05; \
-		echo -n "\b/"; sleep 0.05; \
-		echo -n "\b-"; sleep 0.05; \
-		echo -n "\b\\"; sleep 0.05; \
-		i=$$(($$i+1)); \
-	done'
-	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-	$(OBJS_DIR)%.o: $(SRCS_DIR_BONUS)%.c
+$(OBJS_DIR)%.o: %.c
 	@mkdir -p $(OBJS_DIR)
 	@echo -n "$(CYAN)A compilar $<... $(DEF_COLOR)"
 	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
