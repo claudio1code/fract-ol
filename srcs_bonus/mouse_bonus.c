@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 10:53:26 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 11:00:56 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 12:00:07 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	update_view(t_fractol *f, long double m_re, long double m_im,
 	offset_im = m_im - f->pos_y;
 	f->pos_x = m_re - (offset_re / factor);
 	f->pos_y = m_im - (offset_im / factor);
-	update_complex_range(f);
+	update_complex(f);
 }
 
 int	handle_mouse_click(int button, int x, int y, t_fractol *fractol)

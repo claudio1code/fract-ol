@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 09:46:15 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 10:24:13 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:34:12 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	usage_input_and_exit(int flag)
 	exit(EXIT_FAILURE);
 }
 
-static int	julia_valid(char **argv, t_fractol *lst)
+int	julia_valid(char **argv, t_fractol *lst)
 {
 	int	r_arg;
 	int	i_arg;

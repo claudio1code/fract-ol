@@ -1,9 +1,11 @@
 NAME = fractol
+NAME_BONUS = fractol_bonus
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -O3
 
-SRCS_DIR = srcs/
+SRCS_DIR_MANDATORY = srcs_bonus/
+SRCS_DIR_BONUS = srcs/
 OBJS_DIR = objs/
 INCS_DIR = includes/
 LIBFT_DIR = libft/
@@ -22,8 +24,11 @@ SRCS_BONUS_LIST = 	main_bonus.c \
 					mouse_bonus.c \
 					events_bonus.c
 
-SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
+SRCS = $(addprefix $(SRCS_DIR_MANDATORY), $(SRCS_LIST))
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS_LIST:.c=.o))
+
+SRCS_BONUS = $(addprefix $(SRCS_DIR_BONUS), $(SRCS_BONUS_LIST))
+OBJS_BONUS = $(addprefix $(OBJS_DIR), $(SRCS_BONUS_LIST:.c=.o))
 
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX_LIB = $(MLX_DIR)/libmlx.a
@@ -50,7 +55,22 @@ $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
 	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
-$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): $(OBJS_BONUS) $(LIBFT) $(MLX_LIB)
+	@echo -n "$(YELLOW)A linkar $(NAME_BONUS)... $(DEF_COLOR)"
+	@sh -c 'i=0; \
+	while [ $$i -lt 10 ]; do \
+		echo -n "\b|"; sleep 0.05; \
+		echo -n "\b/"; sleep 0.05; \
+		echo -n "\b-"; sleep 0.05; \
+		echo -n "\b\\"; sleep 0.05; \
+		i=$$(($$i+1)); \
+	done'
+	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
+	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LDFLAGS) -o $(NAME_BONUS)
+
+$(OBJS_DIR)%.o: $(SRCS_DIR_MANDATORY)%.c
 	@mkdir -p $(OBJS_DIR)
 	@echo -n "$(CYAN)A compilar $<... $(DEF_COLOR)"
 	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
@@ -74,7 +94,7 @@ clean:
 	@make -sC $(MLX_DIR) clean
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(NAME_BONUS)
 	@make -sC $(LIBFT_DIR) fclean
 
 re: fclean all

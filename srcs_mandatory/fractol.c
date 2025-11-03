@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 09:48:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 11:01:17 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:49:02 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	register_hooks(t_fractol *fractol)
 {
 	mlx_key_hook(fractol->win_ptr, handle_key, fractol);
 	mlx_hook(fractol->win_ptr, 17, 0, clean_exit, fractol);
-	mlx_mouse_hook(fractol->win_ptr, handle_mouse_click, fractol);
+	mlx_mouse_hook(fractol->win_ptr, handle_mouse, fractol);
 }
 
 int	main(int argc, char **argv)

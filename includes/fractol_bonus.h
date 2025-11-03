@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 17:04:15 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 09:55:32 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 12:02:17 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_fractol
 
 long double	mandelbrot(t_fractol*fractol);
 long double	if_julia(t_fractol *lst);
+long double	newton_fractal(t_fractol *fractol);
 int			clean_exit(t_fractol *fractol);
 void		map_pixel_to_complex(int px, int py, t_fractol *fractal);
 int			handle_key_relese(int keycode, t_fractol *fractol);
@@ -69,5 +70,7 @@ int			julia_valid(char **argv, t_fractol *lst);
 int			input_valid(int argc, char **argv, t_fractol *lst);
 void		put_image(t_fractol *fractol);
 int			handle_mouse_click(int button, int x, int y, t_fractol *fractol);
+void		update_complex(t_fractol *fractol);
+int			redraw_img(t_fractol *fractol);
 
 #endif
