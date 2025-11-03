@@ -6,13 +6,13 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 12:08:22 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/30 16:07:18 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 09:17:09 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int	get_color_from_palette(long double i, t_fractol *data)
+int	get_color_from_palette(long double i, t_fractol *data)
 {
 	double	normalizes;
 	double	pi;

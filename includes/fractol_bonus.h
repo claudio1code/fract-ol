@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_bonus.c                                    :+:      :+:    :+:   */
+/*   fractol_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 17:04:15 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/31 17:04:45 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 09:41:31 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # include "libft.h"
 # include <mlx.h>
+# include <mlx_int.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
@@ -59,14 +60,14 @@ typedef struct s_fractol
 	int			b;
 }t_fractol;
 
+long double	mandelbrot(t_fractol*fractol);
+long double	if_julia(t_fractol *lst);
+int			clean_exit(t_fractol *fractol);
+void		map_pixel_to_complex(int px, int py, t_fractol *fractal);
 int			handle_key_relese(int keycode, t_fractol *fractol);
 int			julia_valid(char **argv, t_fractol *lst);
 int			input_valid(int argc, char **argv, t_fractol *lst);
 void		put_image(t_fractol *fractol);
-long double	mandelbrot(t_fractol*fractol);
 int			handle_mouse_click(int button, int x, int y, t_fractol *fractol);
-void		map_pixel_to_complex(int px, int py, t_fractol *fractal);
-long double	if_julia(t_fractol *lst);
-int			clean_exit(t_fractol *fractol);
 
 #endif

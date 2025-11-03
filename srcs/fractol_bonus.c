@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   fractol_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 09:48:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 09:43:53 by clados-s         ###   ########.fr       */
+/*   Created: 2025/11/03 09:29:49 by clados-s          #+#    #+#             */
+/*   Updated: 2025/11/03 09:44:12 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 static void	init_fractol(t_fractol *f)
 {
@@ -30,10 +30,13 @@ static void	init_fractol(t_fractol *f)
 	f->color_freq = 15.0;
 }
 
+
 static void	register_hooks(t_fractol *fractol)
 {
 	mlx_key_hook(fractol->win_ptr, handle_key, fractol);
-	mlx_hook(fractol->win_ptr, 17, 0, clean_exit, fractol);
+	mlx_hook(fractol->win_ptr, DestroyNotify, NoEventMask, clean_exit, fractol);
+	mlx_hook(fractol->win_ptr, MotionNotify, PointerMotionMask,
+		handle_key_relese, &fractol);
 	mlx_mouse_hook(fractol->win_ptr, handle_mouse_click, fractol);
 }
 
