@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_input.c                                    :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 11:03:43 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/30 17:52:54 by clados-s         ###   ########.fr       */
+/*   Created: 2025/11/03 09:46:15 by clados-s          #+#    #+#             */
+/*   Updated: 2025/11/03 17:16:16 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 static void	usage_input_and_exit(int flag)
 {
@@ -18,18 +18,19 @@ static void	usage_input_and_exit(int flag)
 	{
 		write(1, "Uso incorreto.\n", 15);
 		write(1, "Opções disponíveis:\n", 20);
-		write(1, "  ./fractol mandelbrot\n", 24);
-		write(1, "  ./fractol julia <c_real> <c_imag>\n", 37);
-		exit(EXIT_FAILURE);
+		write(1, "  ./fractol_bonus mandelbrot\n", 24);
+		write(1, "  ./fractol_bonus julia <c_real> <c_imag>\n", 37);
+		write(1, "  ./fractol_bonus newton\n", 19);
 	}
 	else if (flag == 2)
 	{
 		write (1, "Julia value is invalid. Exemples valids:\n", 41);
-		write(1, "Exemplo para Julia: ./fractol julia -0.8 0.156\n", 47);
-		write(1, "Exemplo para Julia: ./fractol julia 0.355 0.1\n", 47);
-		write(1, "Exemplo para Julia: ./fractol julia -0.7269 0.1889\n", 52);
-		exit(EXIT_FAILURE);
+		write(1, "Exemplo para Julia: ./fractol_bonus julia -0.8 0.156\n", 47);
+		write(1, "Exemplo para Julia: ./fractol_bonus julia 0.355 0.1\n", 47);
+		write(1, "Exemplo para Julia: ./fractol_bonus julia -0.7269 0.1889\n",
+			52);
 	}
+	exit(EXIT_FAILURE);
 }
 
 int	julia_valid(char **argv, t_fractol *lst)
@@ -52,10 +53,8 @@ int	julia_valid(char **argv, t_fractol *lst)
 	return (2);
 }
 
-int	input_valid(int argc, char **argv, t_fractol *lst)
+static int	fract_imput(int argc, char **argv, t_fractol *lst)
 {
-	if (argc == 1)
-		usage_input_and_exit(1);
 	if (ft_strncmp(argv[1], "mandelbrot", 11) == 0)
 	{
 		if (argc != 2)
@@ -66,6 +65,16 @@ int	input_valid(int argc, char **argv, t_fractol *lst)
 			return (1);
 		}
 	}
+	if (ft_strncmp(argv[1], "newton", 7) == 0)
+	{
+		if (argc != 2)
+			usage_input_and_exit(1);
+		else
+		{
+			lst->name = ft_strdup("newton");
+			return (3);
+		}
+	}
 	if (ft_strncmp(argv[1], "julia", 6) == 0 && argc == 4)
 		return (julia_valid(argv, lst));
 	else
@@ -73,18 +82,9 @@ int	input_valid(int argc, char **argv, t_fractol *lst)
 	return (0);
 }
 
-int	clean_exit(t_fractol *fractol)
+int	input_valid(int argc, char **argv, t_fractol *lst)
 {
-	if (fractol->img_ptr)
-		mlx_destroy_image(fractol->mlx_ptr, fractol->img_ptr);
-	if (fractol->win_ptr)
-		mlx_destroy_window(fractol->mlx_ptr, fractol->win_ptr);
-	if (fractol->mlx_ptr)
-	{
-		mlx_destroy_display(fractol->mlx_ptr);
-		free(fractol->mlx_ptr);
-	}
-	if (fractol->name)
-		free(fractol->name);
-	exit(EXIT_SUCCESS);
+	if (argc == 1)
+		usage_input_and_exit(1);
+	return (fract_imput(argc, argv, lst));
 }
