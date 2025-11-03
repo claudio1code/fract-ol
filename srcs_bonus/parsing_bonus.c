@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 09:46:15 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 11:34:12 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 12:17:18 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@ static void	usage_input_and_exit(int flag)
 	{
 		write(1, "Uso incorreto.\n", 15);
 		write(1, "Opções disponíveis:\n", 20);
-		write(1, "  ./fractol mandelbrot\n", 24);
-		write(1, "  ./fractol julia <c_real> <c_imag>\n", 37);
-		write(1, "  ./fractol newton\n", 19);
+		write(1, "  ./fractol_bonus mandelbrot\n", 24);
+		write(1, "  ./fractol_bonus julia <c_real> <c_imag>\n", 37);
+		write(1, "  ./fractol_bonus newton\n", 19);
 	}
 	else if (flag == 2)
 	{
 		write (1, "Julia value is invalid. Exemples valids:\n", 41);
-		write(1, "Exemplo para Julia: ./fractol julia -0.8 0.156\n", 47);
-		write(1, "Exemplo para Julia: ./fractol julia 0.355 0.1\n", 47);
-		write(1, "Exemplo para Julia: ./fractol julia -0.7269 0.1889\n", 52);
+		write(1, "Exemplo para Julia: ./fractol_bonus julia -0.8 0.156\n", 47);
+		write(1, "Exemplo para Julia: ./fractol_bonus julia 0.355 0.1\n", 47);
+		write(1, "Exemplo para Julia: ./fractol_bonus julia -0.7269 0.1889\n",
+			52);
 	}
 	exit(EXIT_FAILURE);
 }

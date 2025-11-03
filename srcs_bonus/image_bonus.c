@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 10:26:14 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 11:48:14 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/03 12:15:25 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,14 @@ static void	put_pixel_bonus(t_fractol *data, int x, int y)
 	addr = data->addr + (y * data->line_length + x * (data->bpp / 8));
 	color = aux_pixel(data);
 	*(unsigned int *)addr = color;
+}
+
+void	map_pixel_to_complex(int px, int py, t_fractol *fractal)
+{
+	fractal->real = fractal->cplx_min_re + ((long double)px / (WIDTH - 1))
+		* (fractal->cplx_max_re - fractal->cplx_min_re);
+	fractal->imaginary = fractal->cplx_max_im - ((long double)py
+			/ (HEIGHT - 1)) * (fractal->cplx_max_im - fractal->cplx_min_im);
 }
 
 void	put_image(t_fractol *fractol)
