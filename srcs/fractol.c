@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 09:48:03 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/31 11:17:25 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/31 18:10:48 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	fractol.img_ptr = mlx_new_image(fractol.mlx_ptr, WIDTH, HEIGHT);
 	fractol.addr = mlx_get_data_addr(fractol.img_ptr, &fractol.bpp,
 			&fractol.line_length, &fractol.endian);
-	fractol.max_inter = 142;
+	fractol.max_inter = 1000;
 	fractol.pos_x = 0;
 	fractol.pos_y = 0;
 	fractol.zoom = 1.0;

@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:37:18 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/30 17:37:02 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/31 17:54:04 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <math.h>
 
 # define KEY_ESC 65307
-# define WIDTH 800
+# define WIDTH 600
 # define HEIGHT 600
 # define _USE_MATH_DEFINES
 
