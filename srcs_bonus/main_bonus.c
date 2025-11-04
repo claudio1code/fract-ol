@@ -6,7 +6,7 @@
 /*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 09:29:49 by clados-s          #+#    #+#             */
-/*   Updated: 2025/11/03 16:14:25 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/11/04 16:04:31 by clados-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 
 	fractol.fractol = input_valid(argc, argv, &fractol);
 	init_fractol(&fractol);
-	fractol.max_iter = 142;
+	fractol.max_iter = 900;
 	fractol.pos_x = 0;
 	fractol.pos_y = 0;
 	fractol.zoom = 1.0;
