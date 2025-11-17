@@ -91,15 +91,15 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo -n "$(YELLOW)A linkar $(NAME)... $(DEF_COLOR)"
-	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
+	@sh -c '(while kill -0 $$PPID 2>/dev/null; do \
 		echo -n "\b|"; sleep 0.05; \
 		echo -n "\b/"; sleep 0.05; \
 		echo -n "\b-"; sleep 0.05; \
 		echo -n "\b\\"; sleep 0.05; \
-		i=$$(($$i+1)); \
-	done'
+	done) & \
+	trap "kill $$!" EXIT; \
+	ar rcs $(NAME) $(OBJS)'
 	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
-	@ar rcs $(NAME) $(OBJS)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@

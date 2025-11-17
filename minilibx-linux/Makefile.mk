@@ -51,15 +51,15 @@ $(OBJ_DIR)/%.o: %.c
 
 $(NAME)	: $(OBJ)
 	@echo -n "\n$(YELLOW)A linkar $(NAME)... $(DEF_COLOR)"
-	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
+	@sh -c '(while kill -0 $$PPID 2>/dev/null; do \
 		echo -n "\b|"; sleep 0.05; \
 		echo -n "\b/"; sleep 0.05; \
 		echo -n "\b-"; sleep 0.05; \
-				echo -n "\b\\"; sleep 0.05; \
-		i=$$(($$i+1)); \
-	done'
+		echo -n "\b\\"; sleep 0.05; \
+	done) & \
+	trap "kill $$!" EXIT; \
+	ar -rcs $(NAME) $(OBJ)'
 	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
-	@ar -rcs $(NAME) $(OBJ)
 	@cp $(NAME) $(NAME_UNAME)
 
 check: all

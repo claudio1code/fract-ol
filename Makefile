@@ -47,43 +47,42 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
 	@echo -n "$(YELLOW)A linkar $(NAME)... $(DEF_COLOR)"
-	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
+	@sh -c '(while kill -0 $$PPID 2>/dev/null; do \
 		echo -n "\b|"; sleep 0.05; \
 		echo -n "\b/"; sleep 0.05; \
 		echo -n "\b-"; sleep 0.05; \
 		echo -n "\b\\"; sleep 0.05; \
-		i=$$(($$i+1)); \
-	done'
+	done) & \
+	trap "kill $$!" EXIT; \
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)'
 	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
-	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 bonus: $(NAME_BONUS)
 
 $(OBJS_DIR)%.o: %.c
 	@mkdir -p $(OBJS_DIR)
 	@echo -n "$(CYAN)A compilar $<... $(DEF_COLOR)"
-	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
+	@sh -c '(while kill -0 $$PPID 2>/dev/null; do \
 		echo -n "\b|"; sleep 0.05; \
 		echo -n "\b/"; sleep 0.05; \
 		echo -n "\b-"; sleep 0.05; \
 		echo -n "\b\\"; sleep 0.05; \
-		i=$$(($$i+1)); \
-	done'
+	done) & \
+	trap "kill $$!" EXIT; \
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@'
 	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME_BONUS): $(OBJS_BONUS) $(LIBFT) $(MLX_LIB)
 	@echo -n "$(YELLOW)A linkar $(NAME_BONUS)... $(DEF_COLOR)"
-	@sh -c 'i=0; \
-	while [ $$i -lt 10 ]; do \
+	@sh -c '(while kill -0 $$PPID 2>/dev/null; do \
 		echo -n "\b|"; sleep 0.05; \
 		echo -n "\b/"; sleep 0.05; \
 		echo -n "\b-"; sleep 0.05; \
 		echo -n "\b\\"; sleep 0.05; \
-		i=$$(($$i+1)); \
-	done'
+	done) & \
+	trap "kill $$!" EXIT; \
+	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LDFLAGS) -o $(NAME_BONUS)'
 	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
-	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LDFLAGS) -o $(NAME_BONUS)
 
 $(LIBFT):
 	@make -sC $(LIBFT_DIR)
