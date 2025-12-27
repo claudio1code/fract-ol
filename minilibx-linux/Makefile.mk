@@ -1,9 +1,9 @@
 ##
 ## Makefile for MiniLibX in /home/boulon/work/c/raytraceur/minilibx
-## 
+##
 ## Made by Olivier Crouzet
 ## Login   <ol@epitech.net>
-## 
+##
 ## Started on  Tue Oct  5 15:56:43 2004 Olivier Crouzet
 ## Last update Tue May 15 15:41:20 2007 Olivier Crouzet
 ##
@@ -38,6 +38,7 @@ OBJ_DIR = obj
 OBJ	= $(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
 CFLAGS	= -O3 -I$(INC) -Wno-unused-result
 
+RED = \033[0;91m
 GREEN = \033[0;92m
 YELLOW = \033[0;93m
 CYAN = \033[0;96m
@@ -47,20 +48,26 @@ all	: $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
-
-$(NAME)	: $(OBJ)
-	@echo -n "\n$(YELLOW)A linkar $(NAME)... $(DEF_COLOR)"
-	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
+	@printf "$(CYAN)Compiling $<... $(DEF_COLOR)"
+	@sh -c '(while kill -0 $$PPID 2>/dev/null; do \
 		echo -n "\b|"; sleep 0.05; \
 		echo -n "\b/"; sleep 0.05; \
 		echo -n "\b-"; sleep 0.05; \
-				echo -n "\b\\"; sleep 0.05; \
-		i=$$(($$i+1)); \
-	done'
-	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
-	@ar -rcs $(NAME) $(OBJ)
-	@cp $(NAME) $(NAME_UNAME)
+		echo -n "\b\\"; sleep 0.05; \
+	done) & trap "kill $$!" EXIT; \
+	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@'
+	@printf "\b$(GREEN)OK!$(DEF_COLOR)\n"
+
+$(NAME)	: $(OBJ)
+	@printf "$(YELLOW)Linking $(NAME)... $(DEF_COLOR)"
+	@sh -c '(while kill -0 $$PPID 2>/dev/null; do \
+		echo -n "\b|"; sleep 0.05; \
+		echo -n "\b/"; sleep 0.05; \
+		echo -n "\b-"; sleep 0.05; \
+		echo -n "\b\\"; sleep 0.05; \
+	done) & trap "kill $$!" EXIT; \
+	ar -rcs $(NAME) $(OBJ) && cp $(NAME) $(NAME_UNAME)'
+	@printf "\b$(GREEN)OK!$(DEF_COLOR)\n"
 
 check: all
 	@test/run_tests.sh
@@ -74,6 +81,14 @@ show:
 	@printf "OBJ		:\n	$(OBJ)\n"
 
 clean	:
-	@rm -rf $(OBJ_DIR)/ $(NAME) $(NAME_UNAME) *~ core *.core
+	@printf "$(RED)Cleaning objects... $(DEF_COLOR)"
+	@sh -c '(while kill -0 $$PPID 2>/dev/null; do \
+		echo -n "\b|"; sleep 0.05; \
+		echo -n "\b/"; sleep 0.05; \
+		echo -n "\b-"; sleep 0.05; \
+		echo -n "\b\\"; sleep 0.05; \
+	done) & trap "kill $$!" EXIT; \
+	rm -rf $(OBJ_DIR)/ $(NAME) $(NAME_UNAME) *~ core *.core'
+	@printf "\b$(GREEN)OK!$(DEF_COLOR)\n"
 
 .PHONY: all check show clean

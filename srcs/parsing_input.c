@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clados-s <clados-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claudio <claudio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 11:03:43 by clados-s          #+#    #+#             */
-/*   Updated: 2025/10/30 09:00:27 by clados-s         ###   ########.fr       */
+/*   Updated: 2025/10/30 19:58:09 by claudio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	usage_input_and_exit(int flag)
 		write(1, "Uso incorreto.\n", 15);
 		write(1, "Opções disponíveis:\n", 20);
 		write(1, "  ./fractol mandelbrot\n", 24);
+		write(1, "  ./fractol cinema\n", 20);
 		write(1, "  ./fractol julia <c_real> <c_imag>\n", 37);
 		exit(EXIT_FAILURE);
 	}
@@ -54,11 +55,6 @@ int	input_valid(int argc, char **argv, t_fractol *lst)
 {
 	if (argc == 1)
 		usage_input_and_exit(1);
-	// if (argv[1][0] == '-' || argv[1][0] == '+' || argv[2][0] == '-'
-	// 		|| argv[2][0] == '+')
-	// 	if (argv[1][1] == '-' || argv[1][1] == '+' || argv[2][1] == '-'
-	// 			|| argv[2][1] == '+')
-			// usage_input_and_exit(1);
 	if (ft_strncmp(argv[1], "mandelbrot", 11) == 0)
 	{
 		if (argc != 2)
@@ -66,6 +62,16 @@ int	input_valid(int argc, char **argv, t_fractol *lst)
 		else
 		{
 			lst->name = ft_strdup("mandelbrot");
+			return (1);
+		}
+	}
+	if (ft_strncmp(argv[1], "cinema", 7) == 0)
+	{
+		if (argc != 2)
+			usage_input_and_exit(1);
+		else
+		{
+			lst->name = ft_strdup("cinema");
 			return (1);
 		}
 	}

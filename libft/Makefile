@@ -82,6 +82,7 @@ SRCS = 	$(addprefix $(SRC_DIR)/ctypes/, $(CTYPES_FILES)) \
 
 OBJS = $(SRCS:.c=.o)
 
+RED = \033[0;91m
 GREEN = \033[0;92m
 YELLOW = \033[0;93m
 CYAN = \033[0;96m
@@ -90,25 +91,48 @@ DEF_COLOR = \033[0;39m
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo -n "$(YELLOW)A linkar $(NAME)... $(DEF_COLOR)"
-	@sh -c 'i=0; while [ $$i -lt 10 ]; do \
+	@printf "$(YELLOW)Linking $(NAME)... $(DEF_COLOR)"
+	@sh -c '(while kill -0 $$PPID 2>/dev/null; do \
 		echo -n "\b|"; sleep 0.05; \
 		echo -n "\b/"; sleep 0.05; \
 		echo -n "\b-"; sleep 0.05; \
 		echo -n "\b\\"; sleep 0.05; \
-		i=$$(($$i+1)); \
-	done'
-	@echo "\b\b$(GREEN)OK!$(DEF_COLOR)"
-	@ar rcs $(NAME) $(OBJS)
+	done) & trap "kill $$!" EXIT; \
+	ar rcs $(NAME) $(OBJS)'
+	@printf "\b$(GREEN)OK!$(DEF_COLOR)\n"
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
+	@printf "$(CYAN)Compiling $<... $(DEF_COLOR)"
+	@sh -c '(while kill -0 $$PPID 2>/dev/null; do \
+		echo -n "\b|"; sleep 0.05; \
+		echo -n "\b/"; sleep 0.05; \
+		echo -n "\b-"; sleep 0.05; \
+		echo -n "\b\\"; sleep 0.05; \
+	done) & trap "kill $$!" EXIT; \
+	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@'
+	@printf "\b$(GREEN)OK!$(DEF_COLOR)\n"
 
 clean:
-	@rm -f $(OBJS)
+	@printf "$(RED)Cleaning objects... $(DEF_COLOR)"
+	@sh -c '(while kill -0 $$PPID 2>/dev/null; do \
+		echo -n "\b|"; sleep 0.05; \
+		echo -n "\b/"; sleep 0.05; \
+		echo -n "\b-"; sleep 0.05; \
+		echo -n "\b\\"; sleep 0.05; \
+	done) & trap "kill $$!" EXIT; \
+	rm -f $(OBJS)'
+	@printf "\b$(GREEN)OK!$(DEF_COLOR)\n"
 
 fclean: clean
-	@rm -f $(NAME)
+	@printf "$(RED)Cleaning library... $(DEF_COLOR)"
+	@sh -c '(while kill -0 $$PPID 2>/dev/null; do \
+		echo -n "\b|"; sleep 0.05; \
+		echo -n "\b/"; sleep 0.05; \
+		echo -n "\b-"; sleep 0.05; \
+		echo -n "\b\\"; sleep 0.05; \
+	done) & trap "kill $$!" EXIT; \
+	rm -f $(NAME)'
+	@printf "\b$(GREEN)OK!$(DEF_COLOR)\n"
 
 re: fclean all
 

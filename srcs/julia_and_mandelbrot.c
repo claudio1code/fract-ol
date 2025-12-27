@@ -12,15 +12,15 @@
 
 #include "fractol.h"
 
-long double	if_julia(t_fractol *lst)
+long double	if_julia(t_fractol *lst, long double z_re, long double z_im)
 {
 	long double	x;
 	long double	y;
 	long double	i;
 	long double	temp;
 
-	x = lst->real;
-	y = lst->imaginary;
+	x = z_re;
+	y = z_im;
 	i = 0;
 	while (i < lst->max_inter && ((x * x) + (y * y) <= 4.0L))
 	{
@@ -32,14 +32,20 @@ long double	if_julia(t_fractol *lst)
 	return (i);
 }
 
-long double	mandelbrot(t_fractol*fractol)
+long double	mandelbrot(t_fractol *fractol, long double c_re, long double c_im)
 {
 	long double	a;
 	long double	b;
 	long double	a2;
 	long double	b2;
 	long double	i;
+	long double	q;
 
+	q = (c_re - 0.25) * (c_re - 0.25) + c_im * c_im;
+	if (q * (q + (c_re - 0.25)) < 0.25 * c_im * c_im)
+		return ((long double)fractol->max_inter);
+	if ((c_re + 1.0) * (c_re + 1.0) + c_im * c_im < 0.0625)
+		return ((long double)fractol->max_inter);
 	a = 0.0;
 	b = 0.0;
 	a2 = 0.0;
@@ -54,8 +60,8 @@ long double	mandelbrot(t_fractol*fractol)
 			i += (i + 1.0 - log(log(sqrt(a2 + b2))) / log(2.0));
 			return (i);
 		}
-		b = 2 * a * b + fractol->imaginary;
-		a = a2 - b2 + fractol->real;
+		b = 2 * a * b + c_im;
+		a = a2 - b2 + c_re;
 		i++;
 	}
 	return ((long double)fractol->max_inter);
